@@ -41,11 +41,6 @@ for i in range(len(locations_stripped)):
 tweets_df = pd.DataFrame(tweets_list, columns=['ID', 'Datetime', 'Text', 'Username', 'Location', 'Language', 'Place'])
 display(tweets_df)
 tweets_df.to_csv(r'~/ia440/test_02_15_2022.csv');
-
-'''for i in range(len(terms)):
-        print(terms[i])
-        tweets_list.append(scrape(locations_stripped, terms[i]))'''
-
    
 # calculating execution time
 print("execution time", datetime.now() - begin_time)
