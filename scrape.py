@@ -1,6 +1,5 @@
 # importing libraries and packages
 from datetime import datetime
-from IPython.display import display
 import snscrape.modules.twitter as sntwitter
 import pandas as pd
 import csv
@@ -33,12 +32,11 @@ for i in range(len(locations_stripped)):
 	for j in range(len(terms)):
 		print(locations_stripped[i], terms[j])
 		for k, tweet in enumerate(sntwitter.TwitterSearchScraper(terms[j] + ' since:2017-01-01 until:2020-12-31 near:' + "\"" + locations_stripped[i] + "\"" + 'within:30mi').get_items()):
-			if k > 1:
+			if k > 100:
 				break
 			tweets_list.append([tweet.id, tweet.date, tweet.content, tweet.user.username, tweet.user.location, tweet.lang, tweet.place])
 
 tweets_df = pd.DataFrame(tweets_list, columns=['ID', 'Datetime', 'Text', 'Username', 'Location', 'Language', 'Place'])
-display(tweets_df)
 tweets_df.to_csv(sys.argv[2])
    
 # calculating execution time
